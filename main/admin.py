@@ -8,6 +8,8 @@ admin.site.register(CourseInstructor)
 admin.site.register(SchedulingClass)
 admin.site.register(Likes)
 admin.site.register(Events)
+admin.site.register(SchedulingDay)
+# admin.site.register(AssignClassToDay)
 
 
 

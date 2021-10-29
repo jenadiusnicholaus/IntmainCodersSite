@@ -1,0 +1,34 @@
+
+{% load  static %}
+<div  class=" v-header header-containers">
+   <div class="fullscreen-video-wrap">
+{#       poster="{% static 'assets/img/about.jpg' %}"#}
+        <video width="100%"  autoplay muted   loop="loop" >
+      <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
+          <source type="video/mp4" src="{% static 'assets/video/video_preview_h264.mp4' %}" />
+          <!-- WebM/VP8 for Firefox4, Opera, and Chrome -->
+    {#      <source type="video/webm" src="{% static 'assets/video/video_preview_h264.mp4' %}" />#}
+           <!-- M4V for Apple -->
+          <source type="video/mp4" src="{% static 'assets/video/video_preview_h264.mp4' %}" />
+          <!-- Ogg/Vorbis for older Firefox and Opera versions -->
+          <source type="video/ogg" src="assets/vid/PhysicsEtoys.ogv" />
+          <!-- Subtitles -->
+          <track kind="subtitles" src="assets/vid/subtitles.srt" srclang="en" />
+          <track kind="subtitles" src="assets/vid/subtitles.vtt" srclang="en" />
+          <!-- Flash fallback for non-HTML5 browsers without JavaScript -->
+          <object width="100%" height="400" type="application/x-shockwave-flash" data="flashmediaelement.swf">
+              <param name="movie" value="flashmediaelement.swf" />
+              <param name="flashvars" value="controls=true&file=assets/vid/PhysicsEtoys.mp4" />
+              <!-- Image as a last resort -->
+              <img src="assets/img/myVideo.jpg" width="320" height="240" title="No video playback capabilities" />
+          </object>
+      </video>
+   </div>
+    <div class="header-overlay"></div>
+    <div class="header-content">
+      <h1>Learning Today,<br>Leading Tomorrow</h1>
+      <h2>We are team of talented designers making websites with Bootstrap</h2>
+      <a href="#" class="btn-get-started">Get Started</a>
+    </div>
+
+</div><!-- End Hero -->

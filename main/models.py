@@ -27,7 +27,7 @@ class Courses(models.Model):
     title = models.CharField(max_length=200, null=True, blank=True)
     price = models.FloatField(default=0.00, )
     description = models.TextField()
-    created_adt = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         verbose_name_plural = 'Courses'
@@ -59,10 +59,25 @@ class CourseInstructor(models.Model):
         return f'{self.user.user.firstname}  .  {self.user.user.middlename[0]} . {self.user.user.lastname}'
 
 
+class SchedulingDay(models.Model):
+    day_number = models.CharField(max_length=200, null=True)
+    working_date = models.DateTimeField(default=timezone.now, null=True)
+    scheduling_class = models.ManyToManyField(
+        'SchedulingClass',
+        related_name='list_of_class_per_day'
+    )
+
+    class Meta:
+        verbose_name_plural = 'Scheduling Days'
+
+    def __str__(self):
+        return f' Day {str(self.day_number)} - {self.working_date}'
+
+
 class SchedulingClass(models.Model):
     course = models.ForeignKey(Courses, on_delete=models.CASCADE, null=True)
     user = models.ManyToManyField(settings.AUTH_USER_MODEL)
-    staring_date = models.DateField(default=timezone.now)
+    starting_date = models.DateField(default=timezone.now)
     starting_time = models.TimeField(default=timezone.now)
     ending_date = models.DateField(default=timezone.now)
     ending_time = models.TimeField(default=timezone.now)
@@ -80,10 +95,10 @@ class SchedulingClass(models.Model):
             return i.id
 
     def getTotalBooking(self):
-        totallBookings = 0
+        totalBookings = 0
         for b in self.user.all():
-            totallBookings += 1
-        return totallBookings
+            totalBookings += 1
+        return totalBookings
 
 
 class Likes(models.Model):
